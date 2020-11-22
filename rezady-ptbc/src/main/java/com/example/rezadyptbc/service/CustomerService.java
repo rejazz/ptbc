@@ -1,5 +1,6 @@
 package com.example.rezadyptbc.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,6 @@ public class CustomerService {
 		return repository.findAll();
 	}
 	
-	public Customer getCustomersById(int id) {
-		return repository.findById(id).orElse(null);
-	}
-	
 	public Customer getCustomersByName(String name) {
 		return repository.findByName(name);
 	}
@@ -39,8 +36,14 @@ public class CustomerService {
 		return "Customer deleted"+id;
 	}
 	
+	public String deleteCustomerByName(String name) {
+		Customer cust = repository.findByName(name);
+		repository.delete(cust);
+		return "Customer deleted "+name;
+	}
+	
 	public Customer updateCustomer(Customer customer) {
-		Customer existingCustomer=repository.findById(customer.getId().intValue()).orElse(null);
+		Customer existingCustomer=repository.findByName(customer.getName());
 		existingCustomer.setName(customer.getName());
 		existingCustomer.setPhone(customer.getPhone());
 		

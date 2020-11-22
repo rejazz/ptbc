@@ -2,6 +2,7 @@ package com.example.rezadyptbc.entity;
 
 import java.math.BigInteger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,8 +21,11 @@ public class Customer {
 	
 	@Id
 	@GeneratedValue
+	@Column(length = 20)
 	private BigInteger id;
+	@Column(length = 50)
 	private String name;
+	@Column(length = 30)
 	private String phone;
 	
 	public BigInteger getId() {

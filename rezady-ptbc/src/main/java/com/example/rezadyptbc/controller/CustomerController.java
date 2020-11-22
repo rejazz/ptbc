@@ -1,5 +1,6 @@
 package com.example.rezadyptbc.controller;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +36,6 @@ public class CustomerController {
 		return service.getCustomers();
 	}
 	
-	@GetMapping("/customerById/{id}")
-	public Customer findCustomerById(@PathVariable int id) {
-		return service.getCustomersById(id);
-	}
-	
 	@GetMapping("/customerByName/{name}")
 	public Customer findCustomerByName(@PathVariable String name) {
 		return service.getCustomersByName(name);
@@ -50,8 +46,13 @@ public class CustomerController {
 		return service.updateCustomer(customer);
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	/*@DeleteMapping("/delete/{id}")
 	public String deleteCustomer(@PathVariable int id) {
 		return service.deleteCustomer(id);
+	}*/
+	
+	@DeleteMapping("/deleteByName/{name}")
+	public String deleteCustomerByName(@PathVariable String name) {
+		return service.deleteCustomerByName(name);
 	}
 }
